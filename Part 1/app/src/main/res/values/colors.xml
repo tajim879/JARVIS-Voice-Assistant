@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_space">#050507</color>
+    <color name="bg_card">#0E111A</color>
+    <color name="bg_surface">#141926</color>
+    <color name="bg_input">#1A2030</color>
+
+    <color name="primary_cyan">#00F2FE</color>
+    <color name="neon_blue">#00D2FF</color>
+    <color name="soft_blue">#4A90E2</color>
+    <color name="purple_glow">#9B51E0</color>
+    <color name="electric_teal">#4FACFE</color>
+
+    <color name="status_green">#00E676</color>
+    <color name="status_red">#FF1744</color>
+    <color name="status_amber">#FFD600</color>
+
+    <color name="text_primary">#F4F4F6</color>
+    <color name="text_secondary">#9BA3B8</color>
+    <color name="text_muted">#565F76</color>
+
+    <color name="border_subtle">#20273D</color>
+    <color name="border_active">#00F2FE</color>
+
+    <color name="btn_active">#00F2FE</color>
+    <color name="btn_inactive">#1A2030</color>
+</resources>
