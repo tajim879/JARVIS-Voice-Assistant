@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Jarvis — Settings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#04070a;
+    --panel:#0a1418;
+    --line:#15282d;
+    --line-bright:#234750;
+    --cyan:#2be7ff;
+    --cyan-dim:#0f6673;
+    --violet:#8a7bf7;
+    --green:#3be6a0;
+    --amber:#ffbe4d;
+    --red:#ff5d7a;
+    --ink:#eaf7f9;
+    --ink-dim:#7fa3aa;
+    --ink-faint:#48666c;
+    --sans:'Rajdhani', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --mono:'Share Tech Mono', monospace;
+  }
+  *{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body{
+    background:
+      radial-gradient(ellipse 640px 380px at 15% -6%, rgba(138,123,247,.12), transparent 60%),
+      radial-gradient(ellipse 640px 420px at 100% 10%, rgba(43,231,255,.10), transparent 55%),
+      var(--bg);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:var(--sans);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    user-select:none;
+    -webkit-user-select:none;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(rgba(43,231,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(43,231,255,.035) 1px, transparent 1px);
+    background-size:36px 36px;
+    mask-image:radial-gradient(ellipse 900px 700px at 50% 0%, black, transparent 80%);
+    pointer-events:none; z-index:0;
+  }
+  .app{
+    position:relative;
+    z-index:1;
+    max-width:540px;
+    margin:0 auto;
+    min-height:100vh;
+    padding:calc(16px + env(safe-area-inset-top, 0px)) 18px calc(48px + env(safe-area-inset-bottom, 0px));
+  }
+
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:6px 2px 18px;
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:rgba(4,7,10,0.85);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+  }
+  .icon-btn{
+    width:38px; height:38px; display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--line-bright); border-radius:10px; background:rgba(10,22,26,.65); color:var(--ink);
+    cursor:pointer; transition:transform 0.15s, background-color 0.15s;
+  }
+  .icon-btn:active{ transform:scale(0.92); background:rgba(43,231,255,.15); }
+  .icon-btn svg{width:18px; height:18px;}
+  header h1{
+    font-family:var(--sans); font-size:1.45rem; font-weight:700; letter-spacing:.16em; color:var(--ink);
+    text-shadow:0 0 18px rgba(43,231,255,.35);
+  }
+  .save-link{
+    font-family:var(--sans); font-weight:700; font-size:.84rem; letter-spacing:.14em; color:var(--cyan);
+    text-shadow:0 0 12px rgba(43,231,255,.5); background:none; border:none; padding:8px 12px;
+    cursor:pointer; border-radius:8px; transition:transform 0.15s, background-color 0.15s;
+  }
+  .save-link:active{ transform:scale(0.92); background:rgba(43,231,255,.12); }
+
+
+  /* section frame — left accent rail + icon chip */
+  .section{margin-top:24px;}
+  .section-head{display:flex; align-items:center; gap:10px; margin:0 2px 10px;}
+  .sec-ic{
+    width:32px; height:32px; border-radius:9px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(160deg, rgba(43,231,255,.16), rgba(138,123,247,.10));
+    border:1px solid var(--line-bright);
+  }
+  .sec-ic svg{width:16px; height:16px;}
+  .section-head h2{
+    font-family:var(--sans); font-size:1.15rem; font-weight:700; letter-spacing:.05em; color:var(--ink);
+    text-shadow:0 0 12px rgba(43,231,255,.25);
+  }
+
+  .panel{
+    background:linear-gradient(180deg, rgba(13,28,33,.75), rgba(6,13,16,.75));
+    border:1px solid var(--line);
+    border-left:2px solid var(--cyan-dim);
+    border-radius:6px 16px 16px 6px;
+    padding:18px;
+    position:relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+  }
+
+  .field{margin-bottom:16px;}
+  .field:last-child{margin-bottom:0;}
+  .field-label{font-size:.72rem; letter-spacing:.12em; color:var(--ink-faint); margin-bottom:8px; display:block; font-weight:600;}
+
+  select.hud-select, input.hud-input{
+    width:100%; background:rgba(4,10,12,.75); border:1px solid var(--line-bright); color:var(--ink);
+    font-family:var(--sans); font-size:.96rem; font-weight:500; padding:12px 14px; border-radius:11px;
+    outline:none; appearance:none; -webkit-appearance:none;
+    user-select:text; -webkit-user-select:text;
+  }
+  select.hud-select option{
+    background:#081318;
+    color:var(--ink);
+  }
+  input.hud-input::placeholder{color:var(--ink-faint); font-weight:400;}
+  select.hud-select:focus, input.hud-input:focus{
+    border-color:var(--cyan);
+    box-shadow:0 0 0 3px rgba(43,231,255,.15);
+  }
+  .select-wrap{position:relative;}
+  .select-wrap::after{
+    content:""; position:absolute; right:16px; top:50%; width:8px; height:8px;
+    border-right:2px solid var(--cyan); border-bottom:2px solid var(--cyan);
+    transform:translateY(-65%) rotate(45deg); pointer-events:none;
+  }
+  .input-icon-wrap{position:relative;}
+  .input-icon-wrap input{padding-right:44px;}
+  .eye{
+    position:absolute; right:12px; top:50%; transform:translateY(-50%);
+    color:var(--ink-dim); cursor:pointer; padding:6px; display:flex; align-items:center;
+  }
+  .eye:active{ color:var(--cyan); }
+  .eye svg{width:18px; height:18px;}
+  .link-row{display:flex; align-items:center; justify-content:space-between; margin-top:12px; flex-wrap:wrap; gap:8px;}
+  .text-link{
+    font-size:.78rem; color:var(--cyan); letter-spacing:.04em; cursor:pointer;
+    font-weight:600; padding:4px 0; transition:color 0.15s;
+  }
+  .text-link:active{ color:#a2f7ff; }
+  .status-line{font-family:var(--mono); font-size:.75rem; color:var(--ink-faint);}
+  .status-line.ok{color:var(--green);}
+  .status-line.warn{color:var(--amber);}
+  .status-line.err{color:var(--red);}
+
+  .btn{
+    text-align:center; padding:11px 16px; border-radius:11px; font-family:var(--sans); font-weight:700;
+    font-size:.78rem; letter-spacing:.06em; cursor:pointer; border:1px solid var(--line-bright);
+    background:rgba(255,255,255,.03); color:var(--ink-dim); transition:all 0.15s;
+  }
+  .btn:active{ transform:scale(0.96); }
+  .btn-solid{
+    background:linear-gradient(180deg, rgba(43,231,255,.18), rgba(43,231,255,.06));
+    color:var(--cyan); border-color:rgba(43,231,255,.45);
+  }
+  .btn-solid:active{ background:rgba(43,231,255,.25); }
+  .btn-danger{color:var(--red); border-color:rgba(255,93,122,.35);}
+  .btn-danger:active{ background:rgba(255,93,122,.15); }
+  .btn-row{display:flex; gap:12px;}
+  .btn-row .btn{flex:1;}
+
+  /* voice pills */
+  .voice-row{display:flex; gap:9px; flex-wrap:wrap;}
+  .voice-pill{
+    padding:9px 16px; border-radius:22px; border:1px solid var(--line-bright); font-size:.85rem;
+    font-weight:600; color:var(--ink-dim); cursor:pointer; background:rgba(4,10,12,.5);
+    transition:all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .voice-pill:active{ transform:scale(0.94); }
+  .voice-pill.active{
+    color:#04181b; background:linear-gradient(90deg, var(--cyan), #a9f4ff);
+    border-color:transparent; box-shadow:0 0 16px rgba(43,231,255,.45);
+    font-weight:700;
+  }
+
+  /* personality chips */
+  .chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+  .chip{
+    font-size:.72rem; padding:5px 11px; border-radius:20px; border:1px solid var(--line-bright);
+    color:var(--ink-dim); background:rgba(43,231,255,.03);
+  }
+
+  /* ---- permissions ---- */
+  .perm-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;}
+  .perm-summary{font-size:.84rem; color:var(--ink-dim);}
+  .perm-summary b{color:var(--ink);}
+  .allow-all-btn{
+    padding:8px 14px; border-radius:10px; font-size:.72rem; font-weight:700; letter-spacing:.05em;
+    color:#04181b; background:linear-gradient(90deg, var(--green), #8ef4c8);
+    border:none; cursor:pointer; box-shadow:0 0 14px rgba(59,230,160,.35);
+    white-space:nowrap; transition:transform 0.15s;
+  }
+  .allow-all-btn:active{ transform:scale(0.94); }
+  .manage-toggle{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:13px 2px; margin-top:10px; border-top:1px solid var(--line); cursor:pointer;
+  }
+  .manage-toggle .mt-label{font-size:.86rem; font-weight:600; color:var(--cyan); display:flex; align-items:center; gap:8px;}
+  .manage-toggle svg{width:14px; height:14px; stroke:var(--cyan); transition:transform .25s;}
+  .manage-toggle.open svg{transform:rotate(180deg);}
+  .perm-list{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+  .perm-list.open{max-height:1200px;}
+  .perm-row{display:flex; align-items:center; gap:12px; padding:12px 2px; border-bottom:1px solid rgba(255,255,255,.04);}
+  .perm-row:last-child{border-bottom:none;}
+  .perm-ic{
+    width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,.03); flex-shrink:0; border:1px solid rgba(255,255,255,.06);
+  }
+  .perm-ic svg{width:16px; height:16px;}
+  .perm-info{flex:1; min-width:0;}
+  .perm-info .t{font-weight:600; font-size:.86rem; color:var(--ink);}
+  .perm-info .s{font-size:.7rem; color:var(--ink-faint); margin-top:2px;}
+  .perm-status{
+    font-weight:700; font-size:.68rem; letter-spacing:.07em; padding:6px 12px; border-radius:8px;
+    white-space:nowrap; flex-shrink:0; cursor:pointer; border:1px solid transparent;
+    transition:all 0.15s;
+  }
+  .perm-status:active{ transform:scale(0.94); }
+  .perm-status.allowed{color:var(--green); border-color:rgba(59,230,160,.4); background:rgba(59,230,160,.08); cursor:default;}
+  .perm-status.pending{color:var(--cyan); border-color:rgba(43,231,255,.4); background:rgba(43,231,255,.07);}
+  .warn-note{
+    display:flex; gap:8px; align-items:flex-start; margin-top:12px; padding-top:12px;
+    border-top:1px solid var(--line); font-size:.75rem; color:var(--amber); line-height:1.5;
+  }
+  .warn-note.all-ok{color:var(--green);}
+
+  /* switch styles */
+  .switch-row{display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;}
+  .switch-label{display:flex; align-items:center; gap:10px;}
+  .switch-title{font-size:.9rem; font-weight:600; color:var(--ink);}
+  .switch{
+    position:relative; display:inline-block; width:44px; height:24px; flex-shrink:0;
+  }
+  .switch input{opacity:0; width:0; height:0;}
+  .slider{
+    position:absolute; cursor:pointer; inset:0; background:rgba(255,255,255,.1);
+    transition:.25s; border-radius:24px; border:1px solid var(--line-bright);
+  }
+  .slider:before{
+    position:absolute; content:""; height:16px; width:16px; left:3px; bottom:3px;
+    background:var(--ink-dim); transition:.25s; border-radius:50%;
+  }
+  input:checked + .slider{
+    background:rgba(43,231,255,.2); border-color:var(--cyan);
+  }
+  input:checked + .slider:before{
+    transform:translateX(20px); background:var(--cyan); box-shadow:0 0 8px var(--cyan);
+  }
+
+  /* mobile control / what jarvis can do */
+  .cmd-list{list-style:none; margin-top:4px;}
+  .cmd-list li{
+    font-size:.84rem; color:var(--ink-dim); padding:9px 0 9px 18px; position:relative;
+    border-bottom:1px solid rgba(255,255,255,.03);
+  }
+  .cmd-list li:last-child{border-bottom:none;}
+  .cmd-list li::before{
+    content:""; position:absolute; left:0; top:15px; width:6px; height:6px;
+    background:var(--cyan); border-radius:1px; box-shadow:0 0 6px var(--cyan);
+  }
+  .cmd-list li b{color:var(--ink); font-weight:600;}
+  .policy-badge{display:flex; align-items:center; gap:8px; margin-top:14px; padding-top:14px; border-top:1px solid var(--line);}
+  .policy-badge .pdot{width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 8px var(--green);}
+  .policy-badge .ptitle{font-weight:700; font-size:.84rem; color:var(--green);}
+  .policy-desc{font-size:.76rem; color:var(--ink-faint); margin-top:6px; line-height:1.5;}
+
+  .desc{font-size:.84rem; line-height:1.55; color:var(--ink-dim); margin-bottom:16px;}
+
+  /* toast HUD */
+  #toast{
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(100px);
+    background:rgba(6,16,20,.94); border:1px solid var(--cyan); color:var(--ink);
+    padding:10px 20px; border-radius:12px; font-size:.85rem; font-weight:600;
+    box-shadow:0 0 20px rgba(43,231,255,.4); pointer-events:none; transition:transform 0.3s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.3s;
+    opacity:0; z-index:999; max-width:86%; text-align:center;
+  }
+  #toast.show{
+    transform:translateX(-50%) translateY(0); opacity:1;
+  }
+
+  footer.spacer{height:36px;}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <div class="icon-btn" onclick="goBack()" title="Back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+    <h1>Settings</h1>
+    <button class="save-link" onclick="saveAll()">SAVE</button>
+  </header>
+
+  <!-- 1. API KEY -->
+  <div class="section">
+    <div class="section-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2be7ff" stroke-width="2"><circle cx="7" cy="15" r="4"/><path d="M9 13l9-9 3 3-9 9M15 7l3 3"/></svg></div>
+      <h2>API Key</h2>
+    </div>
+    <div class="panel">
+      <span class="field-label">GEMINI API KEY</span>
+      <div class="input-icon-wrap">
+        <input class="hud-input" id="apiKeyInput" type="password" placeholder="Paste Gemini API Key (AI Studio)" oninput="updateKeyStatus()">
+        <span class="eye" onclick="togglePasswordVisibility('apiKeyInput', this)">
+          <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/>
+          </svg>
+        </span>
+      </div>
+      <div class="link-row">
+        <span class="text-link" onclick="pasteApiKey()">Paste from clipboard</span>
+        <span class="status-line" id="apiKeyStatus">● Not Set</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. AI MODEL -->
+  <div class="section">
+    <div class="section-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2be7ff" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.4" fill="#2be7ff"/><circle cx="15" cy="9" r="1.4" fill="#2be7ff"/><path d="M8 15h8"/></svg></div>
+      <h2>AI Model</h2>
+    </div>
+    <div class="panel">
+      <div class="select-wrap">
+        <select class="hud-select" id="modelSelect">
+          <option value="models/gemini-3.1-flash-live-preview">Gemini 3.1 Flash Live (Ultra-Low Latency - Default)</option>
+          <option value="models/gemini-3.8-live">Gemini 3.8 Live (Voice Agent)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. VOICE -->
+  <div class="section">
+    <div class="section-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2be7ff" stroke-width="2"><path d="M12 15a3 3 0 003-3V6a3 3 0 00-6 0v6a3 3 0 003 3z"/><path d="M19 11a7 7 0 01-14 0M12 19v3"/></svg></div>
+      <h2>Voice</h2>
+    </div>
+    <div class="panel">
+      <div class="voice-row" id="voiceRow">
+        <div class="voice-pill active" onclick="selectVoice('Puck', this)">Puck</div>
+        <div class="voice-pill" onclick="selectVoice('Charon', this)">Charon</div>
+        <div class="voice-pill" onclick="selectVoice('Kore', this)">Kore</div>
+        <div class="voice-pill" onclick="selectVoice('Fenrir', this)">Fenrir</div>
+        <div class="voice-pill" onclick="selectVoice('Aoede', this)">Aoede</div>
+        <div class="voice-pill" onclick="selectVoice('Leda', this)">Leda</div>
+        <div class="voice-pill" onclick="selectVoice('Orus', this)">Orus</div>
+        <div class="voice-pill" onclick="selectVoice('Zephyr', this)">Zephyr</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. PERSONALITY -->
+  <div class="section">
+    <div class="section-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2be7ff" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+      <h2>Personality</h2>
+    </div>
+    <div class="panel">
+      <div class="field">
+        <div class="select-wrap">
+          <select class="hud-select" id="personalitySelect" onchange="updatePersonalityChips()">
+            <option value="Assistant Mode">Assistant Mode</option>
+            <option value="Companion Mode">Companion Mode</option>
+            <option value="Focus Mode">Focus Mode</option>
+          </select>
+        </div>
+        <div class="chips" id="personalityChips">
+          <span class="chip">Friendly</span>
+          <span class="chip">Helpful</span>
+          <span class="chip">Hinglish or English</span>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:0;">
+        <span class="field-label">USER NAME</span>
+        <input class="hud-input" id="userNameInput" type="text" placeholder="e.g. Tony Stark, Sir, Boss (optional)">
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. PERMISSIONS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2be7ff" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></div>
+      <h2>Permissions</h2>
+    </div>
+    <div class="panel">
+      <div class="perm-top">
+        <span class="perm-summary"><b id="permCount">0/6</b> granted</span>
+        <button class="allow-all-btn" onclick="allowAll()">ALLOW ALL</button>
+      </div>
+
+      <div class="manage-toggle" id="mgToggle" onclick="toggleManage()">
+        <span class="mt-label">Manage Permissions</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+
+      <div class="perm-list" id="permList">
+        <!-- 1. Mic -->
+        <div class="perm-row">
+          <div class="perm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2be7ff" stroke-width="2"><path d="M12 15a3 3 0 003-3V6a3 3 0 00-6 0v6a3 3 0 003 3z"/><path d="M19 11a7 7 0 01-14 0M12 19v3"/></svg></div>
+          <div class="perm-info"><div class="t">Microphone Access</div><div class="s">For voice talk and wake words</div></div>
+          <div class="perm-status pending" id="permMicBtn" onclick="requestPerm('mic')">ALLOW</div>
+        </div>
+
+        <!-- 2. Notifications -->
+        <div class="perm-row">
+          <div class="perm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2be7ff" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1h.1a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg></div>
+          <div class="perm-info"><div class="t">Notification Service</div><div class="s">Keeps Jarvis alive in background</div></div>
+          <div class="perm-status pending" id="permNotificationBtn" onclick="requestPerm('notifications')">ALLOW</div>
+        </div>
+
+        <!-- 3. Unrestricted Battery -->
+        <div class="perm-row">
+          <div class="perm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#8a7bf7" stroke-width="2"><path d="M18.4 5.6a9 9 0 11-12.8 0"/><path d="M12 2v6"/></svg></div>
+          <div class="perm-info"><div class="t">Unrestricted Battery</div><div class="s">Allows standby for 5+ hours</div></div>
+          <div class="perm-status pending" id="permBatteryBtn" onclick="requestPerm('battery')">ALLOW</div>
+        </div>
+
+        <!-- 4. Contacts -->
+        <div class="perm-row">
+          <div class="perm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#3be6a0" stroke-width="2"><rect x="3" y="10" width="4" height="11"/><rect x="10" y="6" width="4" height="15"/><rect x="17" y="13" width="4" height="8"/></svg></div>
+          <div class="perm-info"><div class="t">Contacts Access</div><div class="s">For WhatsApp messages &amp; calling</div></div>
+          <div class="perm-status pending" id="permContactsBtn" onclick="requestPerm('contacts')">ALLOW</div>
+        </div>
+
+        <!-- 5. Modify System Settings -->
+        <div class="perm-row">
+          <div class="perm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#ffbe4d" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9"/></svg></div>
+          <div class="perm-info"><div class="t">Modify System Settings</div><div class="s">For voice screen brightness control</div></div>
+          <div class="perm-status pending" id="permSettingsBtn" onclick="requestPerm('settings')">ALLOW</div>
+        </div>
+
+        <!-- 6. Accessibility -->
+        <div class="perm-row">
+          <div class="perm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2be7ff" stroke-width="2"><path d="M18.4 5.6a9 9 0 11-12.8 0"/><path d="M12 2v6"/></svg></div>
+          <div class="perm-info"><div class="t">Accessibility Automation</div><div class="s">Enables hands-free WhatsApp auto-send</div></div>
+          <div class="perm-status pending" id="permAccessibilityBtn" onclick="requestPerm('accessibility')">ENABLE</div>
+        </div>
+
+        <div class="warn-note" id="permWarnNote">
+          <span>⚠</span>
+          <span id="permWarnText">Checking required permissions...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. MEMORY -->
+  <div class="section">
+    <div class="section-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2be7ff" stroke-width="2"><path d="M4 19V5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M13 3v5h5"/></svg></div>
+      <h2>Memory Core</h2>
+    </div>
+    <div class="panel">
+      <p class="desc">Short-term conversation buffer + Room Database long-term knowledge (Routines, Preferences, Notes, Facts).</p>
+      <div class="btn-row">
+        <button class="btn btn-danger" onclick="clearMemories()">CLEAR</button>
+        <button class="btn btn-solid" onclick="viewMemories()">VIEW MEMORIES</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. YOUTUBE AUTOMATION -->
+  <div class="section">
+    <div class="section-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2be7ff" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+      <h2>YouTube Automation</h2>
+    </div>
+    <div class="panel">
+      <div class="switch-row">
+        <div class="switch-label">
+          <span class="switch-title">Enable YouTube Automation</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="switchYouTube" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <p class="desc" style="margin-bottom:12px;">YouTube Data API v3 key for searching songs, playlists, and seamless voice playback.</p>
+
+      <span class="field-label">YOUTUBE API KEY</span>
+      <div class="input-icon-wrap">
+        <input class="hud-input" id="ytApiKeyInput" type="password" placeholder="Paste YouTube Data API v3 Key" oninput="updateYtStatus()">
+        <span class="eye" onclick="togglePasswordVisibility('ytApiKeyInput', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/>
+          </svg>
+        </span>
+      </div>
+
+      <div class="link-row" style="margin-top:10px;">
+        <span class="text-link" onclick="pasteYouTubeKey()">Paste from clipboard</span>
+        <button class="btn btn-solid" style="padding:7px 14px; font-size:.74rem;" onclick="validateYouTubeKey()">VALIDATE KEY</button>
+      </div>
+      <div class="status-line" id="ytStatus" style="margin-top:10px;">Status: Not validated</div>
+    </div>
+  </div>
+
+  <!-- 8. MOBILE CONTROL — WHAT JARVIS CAN DO -->
+  <div class="section">
+    <div class="section-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2be7ff" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+      <h2>Mobile Control</h2>
+    </div>
+    <div class="panel">
+      <span class="field-label">WHAT JARVIS CAN DO ON YOUR PHONE</span>
+      <ul class="cmd-list">
+        <li><b>"Turn on / off flashlight"</b></li>
+        <li><b>"Set brightness to 50%"</b>, "Increase brightness"</li>
+        <li><b>"Volume up / down"</b>, "Set volume to 80%"</li>
+        <li><b>"Open Instagram"</b>, "Open WhatsApp", "Open Spotify"</li>
+        <li><b>"Send WhatsApp to Rahul saying I will be late"</b></li>
+        <li><b>"Call Rahul on WhatsApp"</b>, "Video call Mom"</li>
+        <li><b>"Remember my gym starts at 6 PM"</b>, "Forget routine"</li>
+      </ul>
+      <div class="policy-badge">
+        <span class="pdot"></span>
+        <span class="ptitle">WhatsApp Confirmation Policy: Active</span>
+      </div>
+      <p class="policy-desc">Jarvis will never send any message without explicit verbal confirmation.</p>
+    </div>
+  </div>
+
+  <footer class="spacer"></footer>
+</div>
+
+<!-- Floating Toast -->
+<div id="toast">Settings Saved</div>
+
+<script>
+  let selectedVoice = "Puck";
+
+  function goBack(){
+    if (window.JarvisSettingsBridge && window.JarvisSettingsBridge.onBackClicked) {
+      window.JarvisSettingsBridge.onBackClicked();
+    } else {
+      history.back();
+    }
+  }
+
+  function toggleManage(){
+    document.getElementById('mgToggle').classList.toggle('open');
+    document.getElementById('permList').classList.toggle('open');
+  }
+
+  function togglePasswordVisibility(inputId, triggerEl){
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    const isPassword = input.type === "password";
+    input.type = isPassword ? "text" : "password";
+    
+    // update svg
+    if (isPassword) {
+      triggerEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+    } else {
+      triggerEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>';
+    }
+  }
+
+  function selectVoice(voiceName, el){
+    selectedVoice = voiceName;
+    document.querySelectorAll('.voice-pill').forEach(pill => pill.classList.remove('active'));
+    if (el) el.classList.add('active');
+  }
+
+  function updatePersonalityChips(){
+    const val = document.getElementById('personalitySelect').value;
+    const chipsContainer = document.getElementById('personalityChips');
+    if (!chipsContainer) return;
+
+    if (val === "Companion Mode" || val === "Girlfriend Mode") {
+      chipsContainer.innerHTML = `
+        <span class="chip">Warm & Emotional</span>
+        <span class="chip">Loving Hinglish</span>
+        <span class="chip">Short Spoken Replies</span>
+      `;
+    } else if (val === "Focus Mode" || val === "Professional Mode") {
+      chipsContainer.innerHTML = `
+        <span class="chip">Formal English</span>
+        <span class="chip">Precise & Direct</span>
+        <span class="chip">No Emojis</span>
+      `;
+    } else {
+      chipsContainer.innerHTML = `
+        <span class="chip">Friendly</span>
+        <span class="chip">Helpful</span>
+        <span class="chip">Hinglish or English</span>
+      `;
+    }
+  }
+
+  function updateKeyStatus(){
+    const key = document.getElementById('apiKeyInput').value.trim();
+    const statusEl = document.getElementById('apiKeyStatus');
+    if (!key) {
+      statusEl.textContent = '● Not Set';
+      statusEl.className = 'status-line warn';
+    } else if (key.length < 15) {
+      statusEl.textContent = '● Incomplete Key';
+      statusEl.className = 'status-line warn';
+    } else {
+      statusEl.textContent = '● Key Configured';
+      statusEl.className = 'status-line ok';
+    }
+  }
+
+  function updateYtStatus(){
+    const key = document.getElementById('ytApiKeyInput').value.trim();
+    const statusEl = document.getElementById('ytStatus');
+    if (!key) {
+      statusEl.textContent = 'Status: Key is empty';
+      statusEl.className = 'status-line warn';
+    } else {
+      statusEl.textContent = 'Status: Unverified';
+      statusEl.className = 'status-line';
+    }
+  }
+
+  function pasteApiKey(){
+    if (window.JarvisSettingsBridge && window.JarvisSettingsBridge.pasteApiKey) {
+      window.JarvisSettingsBridge.pasteApiKey();
+    } else {
+      navigator.clipboard.readText().then(text => {
+        setApiKey(text);
+      }).catch(err => {
+        showToast("Clipboard access unavailable");
+      });
+    }
+  }
+
+  function setApiKey(text){
+    if (text) {
+      document.getElementById('apiKeyInput').value = text.trim();
+      updateKeyStatus();
+      showToast("Gemini API key pasted");
+    }
+  }
+
+  function pasteYouTubeKey(){
+    if (window.JarvisSettingsBridge && window.JarvisSettingsBridge.pasteYouTubeKey) {
+      window.JarvisSettingsBridge.pasteYouTubeKey();
+    } else {
+      navigator.clipboard.readText().then(text => {
+        setYouTubeKey(text);
+      }).catch(err => {
+        showToast("Clipboard access unavailable");
+      });
+    }
+  }
+
+  function setYouTubeKey(text){
+    if (text) {
+      document.getElementById('ytApiKeyInput').value = text.trim();
+      updateYtStatus();
+      showToast("YouTube API key pasted");
+    }
+  }
+
+  function requestPerm(type){
+    if (window.JarvisSettingsBridge && window.JarvisSettingsBridge.requestPermission) {
+      window.JarvisSettingsBridge.requestPermission(type);
+    }
+  }
+
+  function allowAll(){
+    if (window.JarvisSettingsBridge && window.JarvisSettingsBridge.requestAllPermissions) {
+      window.JarvisSettingsBridge.requestAllPermissions();
+    }
+  }
+
+  function clearMemories(){
+    if (window.JarvisSettingsBridge && window.JarvisSettingsBridge.clearMemories) {
+      window.JarvisSettingsBridge.clearMemories();
+    }
+  }
+
+  function viewMemories(){
+    if (window.JarvisSettingsBridge && window.JarvisSettingsBridge.viewMemories) {
+      window.JarvisSettingsBridge.viewMemories();
+    }
+  }
+
+  function validateYouTubeKey(){
+    const key = document.getElementById('ytApiKeyInput').value.trim();
+    if (!key) {
+      const statusEl = document.getElementById('ytStatus');
+      statusEl.textContent = 'Status: Key is empty';
+      statusEl.className = 'status-line warn';
+      showToast("Please enter a YouTube API key");
+      return;
+    }
+    const statusEl = document.getElementById('ytStatus');
+    statusEl.textContent = 'Status: Validating with Google...';
+    statusEl.className = 'status-line';
+
+    if (window.JarvisSettingsBridge && window.JarvisSettingsBridge.validateYouTubeKey) {
+      window.JarvisSettingsBridge.validateYouTubeKey(key);
+    }
+  }
+
+  function onYouTubeKeyValidated(isValid, message){
+    const statusEl = document.getElementById('ytStatus');
+    if (isValid) {
+      statusEl.textContent = 'Status: ✓ ' + message;
+      statusEl.className = 'status-line ok';
+      showToast("YouTube API Key Validated!");
+    } else {
+      statusEl.textContent = 'Status: ⚠ ' + message;
+      statusEl.className = 'status-line err';
+      showToast("Validation Failed: " + message);
+    }
+  }
+
+  function updatePermissions(perms){
+    if (typeof perms === "string") {
+      try { perms = JSON.parse(perms); } catch(e){}
+    }
+    if (!perms) return;
+
+    let granted = 0;
+    const total = 6;
+    const missing = [];
+
+    function updateBadge(btnId, isAllowed, actionLabel = 'ALLOW') {
+      const el = document.getElementById(btnId);
+      if (!el) return;
+      if (isAllowed) {
+        granted++;
+        el.textContent = 'ALLOWED';
+        el.className = 'perm-status allowed';
+        el.onclick = null;
+      } else {
+        el.textContent = actionLabel;
+        el.className = 'perm-status pending';
+        el.onclick = () => requestPerm(btnId.replace('perm', '').replace('Btn', '').toLowerCase());
+      }
+    }
+
+    if (perms.mic) granted++; updateBadge('permMicBtn', perms.mic); if (!perms.mic) missing.push("Microphone");
+    if (perms.notification) granted++; updateBadge('permNotificationBtn', perms.notification); if (!perms.notification) missing.push("Notifications");
+    if (perms.battery) granted++; updateBadge('permBatteryBtn', perms.battery); if (!perms.battery) missing.push("Battery");
+    if (perms.contacts) granted++; updateBadge('permContactsBtn', perms.contacts); if (!perms.contacts) missing.push("Contacts");
+    if (perms.settings) granted++; updateBadge('permSettingsBtn', perms.settings); if (!perms.settings) missing.push("System Settings");
+    if (perms.accessibility) granted++; updateBadge('permAccessibilityBtn', perms.accessibility, 'ENABLE'); if (!perms.accessibility) missing.push("Accessibility");
+
+    const finalCount = [perms.mic, perms.notification, perms.battery, perms.contacts, perms.settings, perms.accessibility].filter(Boolean).length;
+    document.getElementById('permCount').textContent = finalCount + '/' + total;
+
+    const warnNote = document.getElementById('permWarnNote');
+    const warnText = document.getElementById('permWarnText');
+    if (finalCount === total) {
+      warnNote.className = 'warn-note all-ok';
+      warnNote.firstElementChild.textContent = '✓';
+      warnText.textContent = 'Core permissions allowed. JARVIS is fully operational.';
+    } else {
+      warnNote.className = 'warn-note';
+      warnNote.firstElementChild.textContent = '⚠';
+      warnText.textContent = 'Recommended: allow ' + missing.slice(0, 3).join(', ') + (missing.length > 3 ? '...' : '') + ' for full functionality.';
+    }
+  }
+
+  function initSettings(data){
+    if (typeof data === "string") {
+      try { data = JSON.parse(data); } catch(e){}
+    }
+    if (!data) return;
+
+    if (data.apiKey) {
+      document.getElementById('apiKeyInput').value = data.apiKey;
+      updateKeyStatus();
+    }
+    if (data.model) {
+      const sel = document.getElementById('modelSelect');
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value === data.model) {
+          sel.selectedIndex = i;
+          break;
+        }
+      }
+    }
+    if (data.voice) {
+      selectedVoice = data.voice;
+      let matched = false;
+      document.querySelectorAll('.voice-pill').forEach(pill => {
+        if (pill.textContent.trim().toLowerCase() === data.voice.toLowerCase()) {
+          pill.classList.add('active');
+          matched = true;
+        } else {
+          pill.classList.remove('active');
+        }
+      });
+      if (!matched && document.querySelector('.voice-pill')) {
+        document.querySelector('.voice-pill').classList.add('active');
+      }
+    }
+    if (data.personality) {
+      const pers = document.getElementById('personalitySelect');
+      for (let i = 0; i < pers.options.length; i++) {
+        if (pers.options[i].value.toLowerCase() === data.personality.toLowerCase() ||
+            (data.personality === "Girlfriend Mode" && pers.options[i].value === "Companion Mode") ||
+            (data.personality === "Professional Mode" && pers.options[i].value === "Focus Mode")) {
+          pers.selectedIndex = i;
+          break;
+        }
+      }
+      updatePersonalityChips();
+    }
+    if (data.userName) {
+      document.getElementById('userNameInput').value = data.userName;
+    }
+    if (data.youtubeEnabled !== undefined) {
+      document.getElementById('switchYouTube').checked = !!data.youtubeEnabled;
+    }
+    if (data.youtubeApiKey) {
+      document.getElementById('ytApiKeyInput').value = data.youtubeApiKey;
+      updateYtStatus();
+    }
+    if (data.permissions) {
+      updatePermissions(data.permissions);
+    }
+  }
+
+  function saveAll(){
+    const payload = {
+      apiKey: document.getElementById('apiKeyInput').value.trim(),
+      model: document.getElementById('modelSelect').value,
+      voice: selectedVoice,
+      personality: document.getElementById('personalitySelect').value,
+      userName: document.getElementById('userNameInput').value.trim(),
+      youtubeEnabled: document.getElementById('switchYouTube').checked,
+      youtubeApiKey: document.getElementById('ytApiKeyInput').value.trim()
+    };
+
+    if (window.JarvisSettingsBridge && window.JarvisSettingsBridge.saveSettings) {
+      window.JarvisSettingsBridge.saveSettings(JSON.stringify(payload));
+    } else {
+      showToast("Settings saved locally");
+    }
+  }
+
+  function showToast(msg){
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2400);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    updatePersonalityChips();
+    updateKeyStatus();
+    updateYtStatus();
+
+    if (window.JarvisSettingsBridge && window.JarvisSettingsBridge.getInitialSettings) {
+      const initial = window.JarvisSettingsBridge.getInitialSettings();
+      if (initial) {
+        initSettings(initial);
+      }
+    }
+  });
+</script>
+</body>
+</html>
