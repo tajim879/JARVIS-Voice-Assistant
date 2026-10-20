@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.JarvisAssistant" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:statusBarColor">@color/bg_space</item>
+        <item name="android:navigationBarColor">@color/bg_space</item>
+        <item name="android:windowBackground">@color/bg_space</item>
+        <item name="colorPrimary">@color/primary_cyan</item>
+        <item name="colorOnPrimary">@color/bg_space</item>
+        <item name="colorSurface">@color/bg_card</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+    </style>
+</resources>
