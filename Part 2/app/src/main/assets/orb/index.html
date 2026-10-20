@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>JARVIS Energy Orb</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+<canvas id="orbCanvas"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('orbCanvas');
+  const ctx = canvas.getContext('2d');
+
+  let width = 300;
+  let height = 300;
+  let dpr = window.devicePixelRatio || 1;
+
+  function resize() {
+    const rect = canvas.getBoundingClientRect();
+    width = rect.width || window.innerWidth || 300;
+    height = rect.height || window.innerHeight || 300;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.scale(dpr, dpr);
+  }
+  window.addEventListener('resize', resize);
+  setTimeout(resize, 50);
+
+  const PRESETS = {
+    idle: {
+      coreColor: [0, 242, 254],
+      midColor: [0, 119, 182],
+      deepColor: [5, 10, 30],
+      glowAlpha: 0.45,
+      pulseSpeed: 0.02,
+      ringCount: 3,
+      particleSpeed: 0.5
+    },
+    listening: {
+      coreColor: [0, 242, 254],
+      midColor: [0, 210, 255],
+      deepColor: [0, 34, 51],
+      glowAlpha: 0.8,
+      pulseSpeed: 0.06,
+      ringCount: 5,
+      particleSpeed: 1.4
+    },
+    thinking: {
+      coreColor: [224, 170, 255],
+      midColor: [123, 44, 191],
+      deepColor: [36, 0, 70],
+      glowAlpha: 0.85,
+      pulseSpeed: 0.09,
+      ringCount: 4,
+      particleSpeed: 2.2
+    },
+    speaking: {
+      coreColor: [144, 224, 239],
+      midColor: [0, 180, 216],
+      deepColor: [0, 27, 68],
+      glowAlpha: 0.9,
+      pulseSpeed: 0.07,
+      ringCount: 6,
+      particleSpeed: 1.8
+    }
+  };
+
+  let currentState = 'idle';
+  let curProps = { ...PRESETS.idle };
+  let targetProps = { ...PRESETS.idle };
+  let audioLevel = 0.0;
+  let targetAudioLevel = 0.0;
+  let time = 0;
+
+  // 60 Ambient Particles
+  const PARTICLE_COUNT = 60;
+  const particles = [];
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    particles.push({
+      angle: Math.random() * Math.PI * 2,
+      dist: 20 + Math.random() * 85,
+      size: 1 + Math.random() * 2.5,
+      speed: (0.005 + Math.random() * 0.015) * (Math.random() > 0.5 ? 1 : -1),
+      alpha: 0.2 + Math.random() * 0.7
+    });
+  }
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function lerpColor(c1, c2, t) {
+    return [
+      Math.round(lerp(c1[0], c2[0], t)),
+      Math.round(lerp(c1[1], c2[1], t)),
+      Math.round(lerp(c1[2], c2[2], t))
+    ];
+  }
+
+  window.setOrbState = function(stateName, level) {
+    const s = (stateName || 'idle').toLowerCase();
+    if (PRESETS[s]) {
+      currentState = s;
+      targetProps = PRESETS[s];
+    }
+    if (typeof level === 'number') {
+      targetAudioLevel = Math.max(0, Math.min(1, level));
+    }
+  };
+
+  window.setAudioLevel = function(level) {
+    if (typeof level === 'number') {
+      targetAudioLevel = Math.max(0, Math.min(1, level));
+    }
+  };
+
+  function render() {
+    time += 1;
+    audioLevel = lerp(audioLevel, targetAudioLevel, 0.25);
+    targetAudioLevel = lerp(targetAudioLevel, 0, 0.08);
+
+    curProps.coreColor = lerpColor(curProps.coreColor, targetProps.coreColor, 0.08);
+    curProps.midColor = lerpColor(curProps.midColor, targetProps.midColor, 0.08);
+    curProps.deepColor = lerpColor(curProps.deepColor, targetProps.deepColor, 0.08);
+    curProps.glowAlpha = lerp(curProps.glowAlpha, targetProps.glowAlpha, 0.08);
+    curProps.pulseSpeed = lerp(curProps.pulseSpeed, targetProps.pulseSpeed, 0.08);
+    curProps.particleSpeed = lerp(curProps.particleSpeed, targetProps.particleSpeed, 0.08);
+
+    ctx.clearRect(0, 0, width, height);
+    const cx = width / 2;
+    const cy = height / 2;
+    const baseRadius = Math.min(width, height) * 0.26;
+    const breathing = Math.sin(time * curProps.pulseSpeed) * 4;
+    const dynamicRadius = baseRadius + breathing + (audioLevel * 30);
+
+    // 1. Outer Glow Waves (Concentric rings)
+    for (let r = 1; r <= curProps.ringCount; r++) {
+      const ringRadius = dynamicRadius + (r * 18 * (1 + audioLevel * 0.8));
+      const ringAlpha = Math.max(0, (curProps.glowAlpha / (r * 1.8)) * (1 - (ringRadius / (width * 0.5))));
+      ctx.beginPath();
+      ctx.arc(cx, cy, ringRadius, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(${curProps.midColor.join(',')}, ${ringAlpha * 0.4})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    // 2. Swirling Particles
+    particles.forEach(p => {
+      p.angle += p.speed * curProps.particleSpeed;
+      const curDist = p.dist * (1 + audioLevel * 0.4);
+      const px = cx + Math.cos(p.angle) * curDist;
+      const py = cy + Math.sin(p.angle) * curDist;
+      ctx.beginPath();
+      ctx.arc(px, py, p.size * (1 + audioLevel * 0.5), 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${curProps.coreColor.join(',')}, ${p.alpha * curProps.glowAlpha})`;
+      ctx.fill();
+    });
+
+    // 3. Volumetric Plasma Radial Gradient Core
+    const grad = ctx.createRadialGradient(
+      cx - dynamicRadius * 0.25,
+      cy - dynamicRadius * 0.25,
+      dynamicRadius * 0.1,
+      cx,
+      cy,
+      dynamicRadius
+    );
+    grad.addColorStop(0, `rgba(255, 255, 255, 0.95)`);
+    grad.addColorStop(0.2, `rgba(${curProps.coreColor.join(',')}, 0.9)`);
+    grad.addColorStop(0.65, `rgba(${curProps.midColor.join(',')}, 0.75)`);
+    grad.addColorStop(1, `rgba(${curProps.deepColor.join(',')}, 0.1)`);
+
+    ctx.beginPath();
+    ctx.arc(cx, cy, dynamicRadius, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // 4. Outer Rim Fresnel Glow
+    ctx.beginPath();
+    ctx.arc(cx, cy, dynamicRadius, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(${curProps.coreColor.join(',')}, ${curProps.glowAlpha * 0.9})`;
+    ctx.lineWidth = 2.5 + (audioLevel * 4);
+    ctx.shadowColor = `rgba(${curProps.coreColor.join(',')}, 0.8)`;
+    ctx.shadowBlur = 18 + (audioLevel * 20);
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    requestAnimationFrame(render);
+  }
+
+  resize();
+  requestAnimationFrame(render);
+})();
+</script>
+</body>
+</html>
