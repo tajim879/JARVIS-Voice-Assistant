@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_space">#070204</color>
+    <color name="bg_card">#140508</color>
+    <color name="bg_input">#260a10</color>
+
+    <color name="primary_cyan">#FF1744</color>
+    <color name="neon_blue">#FF5252</color>
+    <color name="purple_glow">#FF1744</color>
+
+    <color name="status_green">#00E676</color>
+    <color name="status_red">#FF1744</color>
+    <color name="status_amber">#FFD600</color>
+
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#D4AAB2</color>
+    <color name="text_muted">#7A525A</color>
+
+    <color name="border_subtle">#380c14</color>
+</resources>
