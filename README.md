@@ -29,7 +29,8 @@
 | 4 | [Part 4](Part%204) | 1.7.5 | |
 | 5 | [Part 5](Part%205) | 1.8.7 | |
 | 6 | [Part 6](Part%206) | 1.8.7 | |
-| 7 | [Part 7](Part%207) | 1.8.7 | ✅ Latest |
+| 7 | [Part 7](Part%207) | 1.8.7 | |
+| 8 | [Part 8](Part%208) | 1.9.0 | ✅ Latest: Currency tab + multilingual voice tools |
 
 ### ▶️ Build
 Each part is a separate Android Studio project. Requirements: Android 8.0+ (API 26). Go into any part folder and run:

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="currency_title">العملات</string>
+    <string name="currency_card_sub">أسعار مباشرة</string>
+    <string name="currency_tab_convert">تحويل</string>
+    <string name="currency_tab_crypto">عملات رقمية</string>
+    <string name="currency_tab_fiat">عملات ورقية</string>
+    <string name="currency_amount">المبلغ</string>
+    <string name="currency_from">من</string>
+    <string name="currency_to">إلى</string>
+    <string name="currency_swap">تبديل العملات</string>
+    <string name="currency_refresh">تحديث</string>
+    <string name="currency_prices_in">الأسعار بـ</string>
+    <string name="currency_base">الأساس</string>
+    <string name="currency_loading">جارٍ تحميل الأسعار المباشرة…</string>
+    <string name="currency_error">تعذّر تحميل الأسعار المباشرة. تحقق من الإنترنت ثم اضغط تحديث.</string>
+    <string name="currency_updated">آخر تحديث: %1$s</string>
+    <string name="currency_pick_title">اختر العملة</string>
+    <string name="currency_search_hint">بحث…</string>
+    <string name="currency_rate_limited">يتم عرض آخر الأسعار المحفوظة (الخدمة مشغولة)</string>
+    <string name="currency_title_card">العملات</string>
+</resources>

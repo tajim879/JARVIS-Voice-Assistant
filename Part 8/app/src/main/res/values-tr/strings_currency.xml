@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="currency_title">DÖVİZ</string>
+    <string name="currency_card_sub">Canlı Kurlar</string>
+    <string name="currency_tab_convert">Çevir</string>
+    <string name="currency_tab_crypto">Kripto</string>
+    <string name="currency_tab_fiat">Fiat</string>
+    <string name="currency_amount">MİKTAR</string>
+    <string name="currency_from">KAYNAK</string>
+    <string name="currency_to">HEDEF</string>
+    <string name="currency_swap">Para birimlerini değiştir</string>
+    <string name="currency_refresh">Yenile</string>
+    <string name="currency_prices_in">Fiyatlar</string>
+    <string name="currency_base">Baz</string>
+    <string name="currency_loading">Canlı kurlar yükleniyor…</string>
+    <string name="currency_error">Kurlar yüklenemedi. İnternetinizi kontrol edip yenileyin.</string>
+    <string name="currency_updated">Güncellendi %1$s</string>
+    <string name="currency_pick_title">Para birimi seç</string>
+    <string name="currency_search_hint">Ara…</string>
+    <string name="currency_rate_limited">Son kaydedilen fiyatlar gösteriliyor (servis meşgul)</string>
+    <string name="currency_title_card">Döviz</string>
+</resources>
