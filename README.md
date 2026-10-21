@@ -1,6 +1,6 @@
 # 🎧 JARVIS Voice Assistant — Playlist
 
-Android voice assistant (Kotlin + Gemini Live). এখানে প্রজেক্টের ৭টা ধাপ ক্রমানুসারে সাজানো আছে, প্লেলিস্টের মতো Part 1 থেকে শুরু করে।
+Android voice assistant (Kotlin + Gemini Live). **সম্পূর্ণ ফ্রি, কোনো subscription নেই।** এখানে প্রজেক্টের ৭টা ধাপ ক্রমানুসারে সাজানো আছে, প্লেলিস্টের মতো Part 1 থেকে শুরু করে।
 
 ## 📀 Tracklist
 
