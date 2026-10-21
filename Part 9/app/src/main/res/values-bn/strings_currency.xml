@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="currency_title">মুদ্রা</string>
+    <string name="currency_card_sub">লাইভ রেট</string>
+    <string name="currency_tab_convert">রূপান্তর</string>
+    <string name="currency_tab_crypto">ক্রিপ্টো</string>
+    <string name="currency_tab_fiat">ফিয়াট</string>
+    <string name="currency_amount">পরিমাণ</string>
+    <string name="currency_from">থেকে</string>
+    <string name="currency_to">এতে</string>
+    <string name="currency_swap">মুদ্রা অদলবদল</string>
+    <string name="currency_refresh">রিফ্রেশ</string>
+    <string name="currency_prices_in">মূল্য</string>
+    <string name="currency_base">বেস</string>
+    <string name="currency_loading">লাইভ রেট লোড হচ্ছে…</string>
+    <string name="currency_error">লাইভ রেট লোড করা যায়নি। ইন্টারনেট সংযোগ দেখে রিফ্রেশ চাপুন।</string>
+    <string name="currency_updated">আপডেট: %1$s</string>
+    <string name="currency_pick_title">মুদ্রা বেছে নিন</string>
+    <string name="currency_search_hint">খুঁজুন…</string>
+    <string name="currency_rate_limited">সর্বশেষ সংরক্ষিত দাম দেখানো হচ্ছে (লাইভ ফিড ব্যস্ত)</string>
+    <string name="currency_title_card">মুদ্রা</string>
+</resources>

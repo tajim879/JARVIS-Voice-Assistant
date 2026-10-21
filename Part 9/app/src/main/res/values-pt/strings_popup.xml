@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="popup_copy">Copiar</string>
+    <string name="popup_share">Compartilhar</string>
+    <string name="popup_close">Fechar</string>
+    <string name="popup_sources">FONTES</string>
+    <string name="popup_copied">Copiado</string>
+</resources>

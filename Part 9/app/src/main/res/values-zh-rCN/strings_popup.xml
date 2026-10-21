@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="popup_copy">复制</string>
+    <string name="popup_share">分享</string>
+    <string name="popup_close">关闭</string>
+    <string name="popup_sources">来源</string>
+    <string name="popup_copied">已复制</string>
+</resources>
