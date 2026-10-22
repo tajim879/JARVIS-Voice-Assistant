@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="math_title">数学</string>
+    <string name="math_card_title">数学</string>
+    <string name="math_card_sub">解题</string>
+    <string name="math_hint">输入或粘贴任何数学题…</string>
+    <string name="math_camera">相机</string>
+    <string name="math_gallery">相册</string>
+    <string name="math_solve">求解</string>
+    <string name="math_capture">拍摄</string>
+    <string name="math_flip">翻转</string>
+    <string name="math_clear">清除</string>
+    <string name="math_remove_image">移除图片</string>
+    <string name="math_solving">正在求解…</string>
+    <string name="math_need_input">请先输入题目或添加图片</string>
+    <string name="math_topic_auto">自动</string>
+    <string name="math_topic_algebra">代数</string>
+    <string name="math_topic_geometry">几何</string>
+    <string name="math_topic_calculus">微积分</string>
+    <string name="math_topic_stats">统计</string>
+    <string name="math_topic_word">应用题</string>
+    <string name="math_camera_denied">需要相机权限</string>
+    <string name="eyes_on">👁 眼睛开启</string>
+    <string name="eyes_off">👁 眼睛关闭</string>
+    <string name="eyes_toast_on">应用打开时，Jarvis 现在可以通过前置摄像头看到你</string>
+    <string name="eyes_toast_off">Jarvis 的眼睛已关闭</string>
+    <string name="eyes_need_permission">请允许相机，Jarvis 才能看到你</string>
+</resources>

@@ -31,7 +31,8 @@
 | 6 | [Part 6](Part%206) | 1.8.7 | |
 | 7 | [Part 7](Part%207) | 1.8.7 | |
 | 8 | [Part 8](Part%208) | 1.9.0 | Currency tab + multilingual voice tools |
-| 9 | [Part 9](Part%209) | 1.10.0 | ✅ Latest: web research popup + wake word fix + notes, notifications |
+| 9 | [Part 9](Part%209) | 1.10.0 | Web research popup + wake word fix + notes, notifications |
+| 10 | [Part 10](Part%2010) | 1.11.0 | ✅ Latest: Math tab + Jarvis Eyes (front camera) + web search fix |
 
 ### ▶️ Build
 Each part is a separate Android Studio project. Requirements: Android 8.0+ (API 26). Go into any part folder and run:

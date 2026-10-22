@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="math_title">数学</string>
+    <string name="math_card_title">数学</string>
+    <string name="math_card_sub">ソルバー</string>
+    <string name="math_hint">数学の問題を入力または貼り付け…</string>
+    <string name="math_camera">カメラ</string>
+    <string name="math_gallery">ギャラリー</string>
+    <string name="math_solve">解く</string>
+    <string name="math_capture">撮影</string>
+    <string name="math_flip">切替</string>
+    <string name="math_clear">クリア</string>
+    <string name="math_remove_image">画像を削除</string>
+    <string name="math_solving">解いています…</string>
+    <string name="math_need_input">先に問題を入力するか画像を追加してください</string>
+    <string name="math_topic_auto">自動</string>
+    <string name="math_topic_algebra">代数</string>
+    <string name="math_topic_geometry">幾何</string>
+    <string name="math_topic_calculus">微積分</string>
+    <string name="math_topic_stats">統計</string>
+    <string name="math_topic_word">文章題</string>
+    <string name="math_camera_denied">カメラの許可が必要です</string>
+    <string name="eyes_on">👁 アイズ オン</string>
+    <string name="eyes_off">👁 アイズ オフ</string>
+    <string name="eyes_toast_on">アプリを開いている間、ジャービスは前面カメラで見られます</string>
+    <string name="eyes_toast_off">ジャービスの目はオフです</string>
+    <string name="eyes_need_permission">ジャービスがあなたを見られるようカメラを許可してください</string>
+</resources>

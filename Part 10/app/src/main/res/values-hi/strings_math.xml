@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="math_title">गणित</string>
+    <string name="math_card_title">गणित</string>
+    <string name="math_card_sub">हल</string>
+    <string name="math_hint">कोई भी गणित का सवाल लिखें या पेस्ट करें…</string>
+    <string name="math_camera">कैमरा</string>
+    <string name="math_gallery">गैलरी</string>
+    <string name="math_solve">हल करें</string>
+    <string name="math_capture">फ़ोटो लें</string>
+    <string name="math_flip">पलटें</string>
+    <string name="math_clear">साफ़ करें</string>
+    <string name="math_remove_image">तस्वीर हटाएँ</string>
+    <string name="math_solving">हल हो रहा है…</string>
+    <string name="math_need_input">पहले सवाल लिखें या तस्वीर जोड़ें</string>
+    <string name="math_topic_auto">ऑटो</string>
+    <string name="math_topic_algebra">बीजगणित</string>
+    <string name="math_topic_geometry">ज्यामिति</string>
+    <string name="math_topic_calculus">कैलकुलस</string>
+    <string name="math_topic_stats">सांख्यिकी</string>
+    <string name="math_topic_word">शब्द समस्या</string>
+    <string name="math_camera_denied">कैमरे की अनुमति चाहिए</string>
+    <string name="eyes_on">👁 आँखें चालू</string>
+    <string name="eyes_off">👁 आँखें बंद</string>
+    <string name="eyes_toast_on">ऐप खुला होने पर जार्विस अब फ्रंट कैमरे से देख सकता है</string>
+    <string name="eyes_toast_off">जार्विस की आँखें बंद हैं</string>
+    <string name="eyes_need_permission">जार्विस आपको देख सके इसके लिए कैमरे की अनुमति दें</string>
+</resources>

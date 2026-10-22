@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="math_title">MATEMATIKA</string>
+    <string name="math_card_title">Matematika</string>
+    <string name="math_card_sub">Penyelesai</string>
+    <string name="math_hint">Ketik atau tempel soal matematika apa pun…</string>
+    <string name="math_camera">Kamera</string>
+    <string name="math_gallery">Galeri</string>
+    <string name="math_solve">Selesaikan</string>
+    <string name="math_capture">Ambil</string>
+    <string name="math_flip">Balik</string>
+    <string name="math_clear">Hapus</string>
+    <string name="math_remove_image">Hapus gambar</string>
+    <string name="math_solving">Menyelesaikan…</string>
+    <string name="math_need_input">Ketik soal atau tambahkan gambar dulu</string>
+    <string name="math_topic_auto">Otomatis</string>
+    <string name="math_topic_algebra">Aljabar</string>
+    <string name="math_topic_geometry">Geometri</string>
+    <string name="math_topic_calculus">Kalkulus</string>
+    <string name="math_topic_stats">Statistika</string>
+    <string name="math_topic_word">Soal cerita</string>
+    <string name="math_camera_denied">Izin kamera diperlukan</string>
+    <string name="eyes_on">👁 Mata AKTIF</string>
+    <string name="eyes_off">👁 Mata MATI</string>
+    <string name="eyes_toast_on">Jarvis kini bisa melihat lewat kamera depan selama aplikasi terbuka</string>
+    <string name="eyes_toast_off">Mata Jarvis mati</string>
+    <string name="eyes_need_permission">Izinkan kamera agar Jarvis bisa melihat Anda</string>
+</resources>
