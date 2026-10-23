@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="currency_title">मुद्रा</string>
+    <string name="currency_card_sub">लाइव रेट</string>
+    <string name="currency_tab_convert">बदलें</string>
+    <string name="currency_tab_crypto">क्रिप्टो</string>
+    <string name="currency_tab_fiat">फ़िएट</string>
+    <string name="currency_amount">राशि</string>
+    <string name="currency_from">से</string>
+    <string name="currency_to">में</string>
+    <string name="currency_swap">मुद्राएँ बदलें</string>
+    <string name="currency_refresh">रिफ्रेश</string>
+    <string name="currency_prices_in">कीमतें</string>
+    <string name="currency_base">बेस</string>
+    <string name="currency_loading">लाइव रेट लोड हो रहे हैं…</string>
+    <string name="currency_error">लाइव रेट लोड नहीं हो सके। इंटरनेट जाँचें और रिफ्रेश दबाएँ।</string>
+    <string name="currency_updated">अपडेट: %1$s</string>
+    <string name="currency_pick_title">मुद्रा चुनें</string>
+    <string name="currency_search_hint">खोजें…</string>
+    <string name="currency_rate_limited">पिछली सहेजी गई कीमतें दिखा रहे हैं (लाइव फ़ीड व्यस्त है)</string>
+    <string name="currency_title_card">मुद्रा</string>
+</resources>
