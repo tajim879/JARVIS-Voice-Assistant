@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="math_title">ریاضی</string>
+    <string name="math_card_title">ریاضی</string>
+    <string name="math_card_sub">حل</string>
+    <string name="math_hint">کوئی بھی ریاضی کا سوال لکھیں یا پیسٹ کریں…</string>
+    <string name="math_camera">کیمرہ</string>
+    <string name="math_gallery">گیلری</string>
+    <string name="math_solve">حل کریں</string>
+    <string name="math_capture">تصویر لیں</string>
+    <string name="math_flip">پلٹیں</string>
+    <string name="math_clear">صاف کریں</string>
+    <string name="math_remove_image">تصویر ہٹائیں</string>
+    <string name="math_solving">حل ہو رہا ہے…</string>
+    <string name="math_need_input">پہلے سوال لکھیں یا تصویر شامل کریں</string>
+    <string name="math_topic_auto">آٹو</string>
+    <string name="math_topic_algebra">الجبرا</string>
+    <string name="math_topic_geometry">جیومیٹری</string>
+    <string name="math_topic_calculus">کیلکولس</string>
+    <string name="math_topic_stats">شماریات</string>
+    <string name="math_topic_word">لفظی سوال</string>
+    <string name="math_camera_denied">کیمرے کی اجازت درکار ہے</string>
+    <string name="eyes_on">👁 آنکھیں آن</string>
+    <string name="eyes_off">👁 آنکھیں بند</string>
+    <string name="eyes_toast_on">ایپ کھلی ہو تو جارویس اب فرنٹ کیمرے سے دیکھ سکتا ہے</string>
+    <string name="eyes_toast_off">جارویس کی آنکھیں بند ہیں</string>
+    <string name="eyes_need_permission">جارویس آپ کو دیکھ سکے اس کے لیے کیمرے کی اجازت دیں</string>
+</resources>

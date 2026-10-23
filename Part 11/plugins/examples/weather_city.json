@@ -1,0 +1,15 @@
+{
+  "name": "weather_city",
+  "description": "Current weather for a city (wttr.in)",
+  "method": "GET",
+  "url": "https://wttr.in/{{city}}?format=3",
+  "params": {
+    "city": {
+      "type": "string",
+      "description": "City name, e.g. Dhaka"
+    }
+  },
+  "required": [
+    "city"
+  ]
+}

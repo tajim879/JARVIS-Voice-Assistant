@@ -1,0 +1,16 @@
+{
+  "name": "wikipedia_summary",
+  "description": "Short Wikipedia summary of a topic",
+  "method": "GET",
+  "url": "https://en.wikipedia.org/api/rest_v1/page/summary/{{title}}",
+  "params": {
+    "title": {
+      "type": "string",
+      "description": "Article title, e.g. Albert_Einstein"
+    }
+  },
+  "required": [
+    "title"
+  ],
+  "response_path": "extract"
+}

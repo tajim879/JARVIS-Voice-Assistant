@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="popup_copy">কপি</string>
+    <string name="popup_share">শেয়ার</string>
+    <string name="popup_close">বন্ধ</string>
+    <string name="popup_sources">সূত্র</string>
+    <string name="popup_copied">কপি হয়েছে</string>
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="math_title">MATEMÁTICAS</string>
+    <string name="math_card_title">Mates</string>
+    <string name="math_card_sub">Solucionador</string>
+    <string name="math_hint">Escribe o pega cualquier problema de matemáticas…</string>
+    <string name="math_camera">Cámara</string>
+    <string name="math_gallery">Galería</string>
+    <string name="math_solve">Resolver</string>
+    <string name="math_capture">Capturar</string>
+    <string name="math_flip">Girar</string>
+    <string name="math_clear">Borrar</string>
+    <string name="math_remove_image">Quitar imagen</string>
+    <string name="math_solving">Resolviendo…</string>
+    <string name="math_need_input">Escribe un problema o añade una imagen primero</string>
+    <string name="math_topic_auto">Auto</string>
+    <string name="math_topic_algebra">Álgebra</string>
+    <string name="math_topic_geometry">Geometría</string>
+    <string name="math_topic_calculus">Cálculo</string>
+    <string name="math_topic_stats">Estadística</string>
+    <string name="math_topic_word">Problema de texto</string>
+    <string name="math_camera_denied">Se necesita permiso de cámara</string>
+    <string name="eyes_on">👁 Ojos activados</string>
+    <string name="eyes_off">👁 Ojos apagados</string>
+    <string name="eyes_toast_on">Jarvis ahora puede ver con la cámara frontal mientras la app está abierta</string>
+    <string name="eyes_toast_off">Los ojos de Jarvis están apagados</string>
+    <string name="eyes_need_permission">Permite la cámara para que Jarvis pueda verte</string>
+</resources>

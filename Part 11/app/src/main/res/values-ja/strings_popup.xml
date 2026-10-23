@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="popup_copy">コピー</string>
+    <string name="popup_share">共有</string>
+    <string name="popup_close">閉じる</string>
+    <string name="popup_sources">情報源</string>
+    <string name="popup_copied">コピーしました</string>
+</resources>

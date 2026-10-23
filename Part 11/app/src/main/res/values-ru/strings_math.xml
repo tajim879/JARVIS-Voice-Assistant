@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="math_title">МАТЕМАТИКА</string>
+    <string name="math_card_title">Матем.</string>
+    <string name="math_card_sub">Решатель</string>
+    <string name="math_hint">Введите или вставьте любую задачу…</string>
+    <string name="math_camera">Камера</string>
+    <string name="math_gallery">Галерея</string>
+    <string name="math_solve">Решить</string>
+    <string name="math_capture">Снять</string>
+    <string name="math_flip">Перевернуть</string>
+    <string name="math_clear">Очистить</string>
+    <string name="math_remove_image">Убрать фото</string>
+    <string name="math_solving">Решаю…</string>
+    <string name="math_need_input">Сначала введите задачу или добавьте фото</string>
+    <string name="math_topic_auto">Авто</string>
+    <string name="math_topic_algebra">Алгебра</string>
+    <string name="math_topic_geometry">Геометрия</string>
+    <string name="math_topic_calculus">Анализ</string>
+    <string name="math_topic_stats">Статистика</string>
+    <string name="math_topic_word">Текстовая задача</string>
+    <string name="math_camera_denied">Нужно разрешение камеры</string>
+    <string name="eyes_on">👁 Глаза включены</string>
+    <string name="eyes_off">👁 Глаза выключены</string>
+    <string name="eyes_toast_on">Пока приложение открыто, Джарвис видит через фронтальную камеру</string>
+    <string name="eyes_toast_off">Глаза Джарвиса выключены</string>
+    <string name="eyes_need_permission">Разрешите камеру, чтобы Джарвис мог вас видеть</string>
+</resources>

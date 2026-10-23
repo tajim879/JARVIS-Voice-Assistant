@@ -1,0 +1,7 @@
+{
+  "name": "random_joke",
+  "description": "A random joke",
+  "method": "GET",
+  "url": "https://official-joke-api.appspot.com/random_joke",
+  "params": {}
+}

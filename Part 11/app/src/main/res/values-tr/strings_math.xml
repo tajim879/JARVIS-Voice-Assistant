@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="math_title">MATEMATİK</string>
+    <string name="math_card_title">Matematik</string>
+    <string name="math_card_sub">Çözücü</string>
+    <string name="math_hint">Herhangi bir matematik sorusu yazın veya yapıştırın…</string>
+    <string name="math_camera">Kamera</string>
+    <string name="math_gallery">Galeri</string>
+    <string name="math_solve">Çöz</string>
+    <string name="math_capture">Çek</string>
+    <string name="math_flip">Çevir</string>
+    <string name="math_clear">Temizle</string>
+    <string name="math_remove_image">Resmi kaldır</string>
+    <string name="math_solving">Çözülüyor…</string>
+    <string name="math_need_input">Önce bir soru yazın veya resim ekleyin</string>
+    <string name="math_topic_auto">Otomatik</string>
+    <string name="math_topic_algebra">Cebir</string>
+    <string name="math_topic_geometry">Geometri</string>
+    <string name="math_topic_calculus">Analiz</string>
+    <string name="math_topic_stats">İstatistik</string>
+    <string name="math_topic_word">Problem</string>
+    <string name="math_camera_denied">Kamera izni gerekli</string>
+    <string name="eyes_on">👁 Gözler AÇIK</string>
+    <string name="eyes_off">👁 Gözler KAPALI</string>
+    <string name="eyes_toast_on">Uygulama açıkken Jarvis artık ön kameradan görebilir</string>
+    <string name="eyes_toast_off">Jarvis\'in gözleri kapalı</string>
+    <string name="eyes_need_permission">Jarvis\'in sizi görebilmesi için kameraya izin verin</string>
+</resources>

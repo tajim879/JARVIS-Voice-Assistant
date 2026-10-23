@@ -1,11 +1,11 @@
-name: Build JARVIS APK (Part 10)
+name: Build JARVIS APK (Part 11)
 
 on:
   push:
     branches: [ main ]
     tags: [ "v*" ]
     paths:
-      - "Part 10/**"
+      - "Part 11/**"
       - ".github/workflows/build-apk.yml"
   workflow_dispatch:
 
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: "Part 10"
+        working-directory: "Part 11"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -43,13 +43,13 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: JARVIS-Part10-debug-apk
-          path: "Part 10/JARVIS-*.apk"
+          name: JARVIS-Part11-debug-apk
+          path: "Part 11/JARVIS-*.apk"
           if-no-files-found: error
 
       - name: Publish GitHub Release (tag pushes only)
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: "Part 10/JARVIS-*.apk"
+          files: "Part 11/JARVIS-*.apk"
           generate_release_notes: true

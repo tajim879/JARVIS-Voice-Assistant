@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="math_title">الرياضيات</string>
+    <string name="math_card_title">الرياضيات</string>
+    <string name="math_card_sub">الحل</string>
+    <string name="math_hint">اكتب أو الصق أي مسألة رياضية…</string>
+    <string name="math_camera">الكاميرا</string>
+    <string name="math_gallery">المعرض</string>
+    <string name="math_solve">احسب</string>
+    <string name="math_capture">التقاط</string>
+    <string name="math_flip">قلب</string>
+    <string name="math_clear">مسح</string>
+    <string name="math_remove_image">إزالة الصورة</string>
+    <string name="math_solving">جارٍ الحل…</string>
+    <string name="math_need_input">اكتب مسألة أو أضف صورة أولاً</string>
+    <string name="math_topic_auto">تلقائي</string>
+    <string name="math_topic_algebra">الجبر</string>
+    <string name="math_topic_geometry">الهندسة</string>
+    <string name="math_topic_calculus">التفاضل والتكامل</string>
+    <string name="math_topic_stats">الإحصاء</string>
+    <string name="math_topic_word">مسألة كلامية</string>
+    <string name="math_camera_denied">مطلوب إذن الكاميرا</string>
+    <string name="eyes_on">👁 العيون تعمل</string>
+    <string name="eyes_off">👁 العيون متوقفة</string>
+    <string name="eyes_toast_on">يستطيع جارفيس الآن الرؤية عبر الكاميرا الأمامية أثناء فتح التطبيق</string>
+    <string name="eyes_toast_off">عيون جارفيس متوقفة</string>
+    <string name="eyes_need_permission">اسمح بالكاميرا ليتمكن جارفيس من رؤيتك</string>
+</resources>

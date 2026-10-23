@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="currency_title">MOEDAS</string>
+    <string name="currency_card_sub">Taxas ao vivo</string>
+    <string name="currency_tab_convert">Converter</string>
+    <string name="currency_tab_crypto">Cripto</string>
+    <string name="currency_tab_fiat">Fiduciárias</string>
+    <string name="currency_amount">VALOR</string>
+    <string name="currency_from">DE</string>
+    <string name="currency_to">PARA</string>
+    <string name="currency_swap">Trocar moedas</string>
+    <string name="currency_refresh">Atualizar</string>
+    <string name="currency_prices_in">Preços em</string>
+    <string name="currency_base">Base</string>
+    <string name="currency_loading">Carregando taxas ao vivo…</string>
+    <string name="currency_error">Não foi possível carregar as taxas. Verifique a internet e atualize.</string>
+    <string name="currency_updated">Atualizado %1$s</string>
+    <string name="currency_pick_title">Escolher moeda</string>
+    <string name="currency_search_hint">Pesquisar…</string>
+    <string name="currency_rate_limited">Mostrando os últimos preços salvos (serviço ocupado)</string>
+    <string name="currency_title_card">Moedas</string>
+</resources>

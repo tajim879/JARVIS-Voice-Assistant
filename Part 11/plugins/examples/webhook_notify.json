@@ -1,0 +1,20 @@
+{
+  "name": "webhook_notify",
+  "description": "Sends a message to your own webhook (asks permission every time)",
+  "method": "POST",
+  "url": "https://example.com/your-webhook",
+  "headers": {
+    "Authorization": "Bearer YOUR_TOKEN"
+  },
+  "body": "{\"text\":\"{{message}}\"}",
+  "params": {
+    "message": {
+      "type": "string",
+      "description": "Message text"
+    }
+  },
+  "required": [
+    "message"
+  ],
+  "confirm": true
+}

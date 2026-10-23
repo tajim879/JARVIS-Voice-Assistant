@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="math_title">গণিত</string>
+    <string name="math_card_title">গণিত</string>
+    <string name="math_card_sub">সমাধান</string>
+    <string name="math_hint">যেকোনো অঙ্কের সমস্যা লিখুন বা পেস্ট করুন…</string>
+    <string name="math_camera">ক্যামেরা</string>
+    <string name="math_gallery">গ্যালারি</string>
+    <string name="math_solve">সমাধান</string>
+    <string name="math_capture">ছবি তুলুন</string>
+    <string name="math_flip">ঘোরান</string>
+    <string name="math_clear">মুছুন</string>
+    <string name="math_remove_image">ছবি সরান</string>
+    <string name="math_solving">সমাধান হচ্ছে…</string>
+    <string name="math_need_input">আগে একটি অঙ্ক লিখুন বা ছবি দিন</string>
+    <string name="math_topic_auto">অটো</string>
+    <string name="math_topic_algebra">বীজগণিত</string>
+    <string name="math_topic_geometry">জ্যামিতি</string>
+    <string name="math_topic_calculus">ক্যালকুলাস</string>
+    <string name="math_topic_stats">পরিসংখ্যান</string>
+    <string name="math_topic_word">গাণিতিক সমস্যা</string>
+    <string name="math_camera_denied">ক্যামেরার অনুমতি দরকার</string>
+    <string name="eyes_on">👁 চোখ চালু</string>
+    <string name="eyes_off">👁 চোখ বন্ধ</string>
+    <string name="eyes_toast_on">অ্যাপ খোলা থাকলে জার্ভিস এখন সামনের ক্যামেরায় দেখতে পারবে</string>
+    <string name="eyes_toast_off">জার্ভিসের চোখ বন্ধ</string>
+    <string name="eyes_need_permission">জার্ভিস যেন আপনাকে দেখতে পারে সেজন্য ক্যামেরার অনুমতি দিন</string>
+</resources>
